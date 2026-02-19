@@ -1,7 +1,6 @@
-// CourseList.jsx
 import React, { useState } from 'react';
 import { getCoursesByDepartment } from './api';
-import './CourseList.css'; // Ensure this is imported
+import './CourseList.css';
 
 const CourseList = () => {
   const [courses, setCourses] = useState([]);
@@ -15,30 +14,29 @@ const CourseList = () => {
       const data = await getCoursesByDepartment(dept);
       setCourses(data);
     } catch (err) {
-      alert("Error fetching: " + err.message);
+      alert("Error: " + err.message);
     } finally {
       setLoading(false);
     }
   };
 
- return (
+  return (
     <div className="list-container">
       <h3>View Courses</h3>
       <div className="filter-bar">
-        <select value={dept} onChange={(e) => setDept(e.target.value)} style={{ flex: 1, padding: '10px' }}>
+        <select value={dept} onChange={(e) => setDept(e.target.value)}>
           <option value="">-- Choose Department --</option>
-          <option value="">Select Department</option>
-              <option value="CE">Chemical Engineering</option>
-              <option value="CEE">Civil & Environmental Engineering</option>
-              <option value="EEE">Electrical & Electronic Engineering</option>
-              <option value="IE">Integrated Engineering</option>
-              <option value="ME">Mechanical Engineering</option>
-              <option value="PE">Petroleum Engineering</option>
-              <option value="FASD">Applied Science</option>
-              <option value="GSC">Geosciences</option>
-              <option value="DM">Management</option>
+          <option value="CE">Chemical Engineering</option>
+          <option value="CEE">Civil & Environmental Engineering</option>
+          <option value="EEE">Electrical & Electronic Engineering</option>
+          <option value="IE">Integrated Engineering</option>
+          <option value="ME">Mechanical Engineering</option>
+          <option value="PE">Petroleum Engineering</option>
+          <option value="FASD">Applied Science</option>
+          <option value="GSC">Geosciences</option>
+          <option value="DM">Management</option>
         </select>
-        <button onClick={handleFetch} className="submit-btn" style={{ width: 'auto', margin: 0 }}>
+        <button onClick={handleFetch} className="submit-btn">
           {loading ? 'Fetching...' : 'Fetch'}
         </button>
       </div>
@@ -65,11 +63,7 @@ const CourseList = () => {
               </tr>
             ))
           ) : (
-            <tr>
-              <td colSpan="5" style={{ textAlign: 'center', padding: '20px' }}>
-                No courses found.
-              </td>
-            </tr>
+            <tr><td colSpan="5" style={{textAlign:'center', padding:'20px'}}>No records.</td></tr>
           )}
         </tbody>
       </table>

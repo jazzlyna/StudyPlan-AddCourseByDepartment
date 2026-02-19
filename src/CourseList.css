@@ -5,12 +5,28 @@
   border-radius: 12px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+  width: 100%;  /* Make sure container takes full width */
 }
 
 .filter-bar {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  width: 100%;  /* Change from 500px to 100% */
+}
+
+.filter-bar select {
+  flex: 3;  /* Takes 3 parts of the space */
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+  font-size: 1rem;
+}
+
+.filter-bar button {
+  flex: 1;  /* Takes 1 part of the space */
+  padding: 10px;
+  white-space: nowrap;  /* Prevents button text from wrapping */
 }
 
 .course-table {
