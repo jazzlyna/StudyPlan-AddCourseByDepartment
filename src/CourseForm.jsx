@@ -14,7 +14,7 @@ const CourseForm = () => {
     course_semester: '',
     course_desc: '',
     course_type: '',
-    credit_hour: 0,
+    credit_hour: '',
     pre_requisite: [''],
     course_department: '',
   });
@@ -79,10 +79,12 @@ await upsertCourse(payload, formData.course_department);
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.course_department) {
-      alert("Please select a department.");
-      return;
-    }
+const { course_name, course_code, course_semester, course_type, credit_hour, course_department } = formData;
+  
+  if (!course_name || !course_code || !course_semester || !course_type || !course_department || credit_hour === '') {
+    alert("Please fill in all required fields.");
+    return;
+  }
 
     await saveCourse();
   };
@@ -125,12 +127,12 @@ await upsertCourse(payload, formData.course_department);
 
             <div className="input-group">
               <label>Semester</label>
-              <input name="course_semester" placeholder='e.g. 1' value={formData.course_semester} onChange={handleChange} />
+              <input name="course_semester" placeholder='e.g. 1' value={formData.course_semester} onChange={handleChange} required/>
             </div>
 
             <div className="input-group">
               <label>Credit Hours</label>
-              <input type="number" name="credit_hour" value={formData.credit_hour} onChange={handleChange} required/>
+              <input type="number"placeholder='e.g. 0' name="credit_hour" value={formData.credit_hour} onChange={handleChange} required/>
             </div>
 
             <div className="input-group">
